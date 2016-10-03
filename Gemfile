@@ -30,6 +30,9 @@ gem 'pg', '~> 0.18.4'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
+gem 'faker', '1.6.3'
+gem 'will_paginate', '3.1.0'
+gem 'bootstrap-will_paginate', '0.0.10'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

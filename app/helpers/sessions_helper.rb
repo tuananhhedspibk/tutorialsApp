@@ -13,9 +13,26 @@ module SessionsHelper
 		!current_user.nil?
 	end
 
+	# Return true if given user is current user
+	def current_user? user
+		user == current_user
+	end
+
 	# Logs out the current user.
 	def log_out
 		session.delete(:user_id)
 		@current_user = nil
 	end
+
+	# Redirects to stored location (or to the default).
+	def redirect_back_or default
+		redirect_to(session[:forwarding_url] || default)
+		# remove the forwarding URL
+		session.delete(:forwarding_url)
+	end
+
+	def store_location
+		# puts the requested URL in the session variable under the key :forwarding_url, but only for a GET request
+		session[:forwarding_url] = request.original_url if request.get?
+	end	
 end
