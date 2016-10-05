@@ -7,6 +7,16 @@ module SessionsHelper
 
 	def current_user 
 		@current_user ||= User.find_by(id: session[:user_id])
+
+		#if(user_id == session[:user_id])
+		#	@current_user ||= User.find_by(id: user_id)
+		#elsif
+		#	user = User.find_by(id: user_id)
+		#	if user && user.authenticated?(:remember, cookies[:remember_token])
+		#		log_in user
+		#		@current_user = user
+		#	end
+		#end
 	end
 
 	def logged_in?
