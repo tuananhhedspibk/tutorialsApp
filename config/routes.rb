@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 	post '/password_resets', to: 'password_resets#create'
 
 	resources :users
-	resources :account_activations, only: [:edit]
-	resources :password_resets, only: [:new, :create, :edit, :update]
+	resources :account_activations, 	only: [:edit]
+	resources :password_resets, 		only: [:new, :create, :edit, :update]
+	resources :microposts,				only: [:create, :destroy]
 	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
