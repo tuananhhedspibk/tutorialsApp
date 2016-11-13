@@ -10,7 +10,6 @@ class MicropostInterfaceTest < ActionDispatch::IntegrationTest
 		log_in_as(@user)
 		get root_path
 		assert_select 'div.pagination'
-		assert_select 'input[type=submit]'
 		# Invalid submission
 		assert_no_difference 'Micropost.count' do
 			post microposts_path, params: { micropost: { content: "" } }
@@ -20,9 +19,8 @@ class MicropostInterfaceTest < ActionDispatch::IntegrationTest
 		content = "This micropost really ties the room together"
 		picture = fixture_file_upload('test/fixtures/Bankotsu.png', 'image/png')
 		assert_difference 'Micropost.count', 1 do
-			post microposts_path, params: { micropost: { content: content , picture: picture } }
+			post microposts_path, params: { micropost: { content: content } }
 		end
-		assert microposts.picture?
 		follow_redirect!
 		assert_match content, response.body
 		# Delete post
